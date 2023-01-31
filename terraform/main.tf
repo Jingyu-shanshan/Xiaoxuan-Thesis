@@ -14,7 +14,7 @@ terraform {
 }
 
 provider "aws" {
-  region  = env.AWS_REGION
+  region = env.AWS_REGION
 }
 
 resource "aws_instance" "app_server" {
