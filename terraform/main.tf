@@ -2,13 +2,26 @@ variable "AWS_REGION" {
   type = string
 }
 
-# Configure the AWS provider
-provider "aws" {
-  region = var.AWS_REGION
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.16"
+    }
+  }
+
+  required_version = ">= 1.2.0"
 }
 
-# Create an EC2 instance
-resource "aws_instance" "primary-aws-instance" {
-  ami           = "ami-785db401"
+provider "aws" {
+  region  = env.AWS_REGION
+}
+
+resource "aws_instance" "app_server" {
+  ami           = "ami-830c94e3"
   instance_type = "t2.micro"
+
+  tags = {
+    Name = "terraform"
+  }
 }
