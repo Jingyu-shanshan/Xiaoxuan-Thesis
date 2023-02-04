@@ -28,7 +28,7 @@ jobs:
        uses: aws-actions/configure-aws-credentials@v1
        with:
          role-to-assume: arn:aws:iam::380893840295:user/xiaoxuan
-         aws-region: us-east-2
+         aws-region: eu-north-1
  
      - name: Setup Terraform with specified version on the runner
        uses: hashicorp/setup-terraform@v2
