@@ -1,3 +1,8 @@
+variable "server_name" {
+  type    = string
+  default = ""
+}
+
 data "aws_ami" "amazon_linux" {
   most_recent = true
 
