@@ -4,6 +4,7 @@ on:
  push:
    branches:
    - main
+  
  
 env:
  TF_LOG: INFO
@@ -15,6 +16,9 @@ jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
+   permissions:
+      id-token: write
+      contents: read
    defaults:
      run:
        shell: bash
@@ -28,7 +32,8 @@ jobs:
        uses: aws-actions/configure-aws-credentials@v1
        with:
          role-to-assume: arn:aws:iam::380893840295:user/xiaoxuan
-         aws-region: eu-north-1
+         role-session-name: GithubActionDeployment
+         aws-region: ${{ env.TF_VAR_AWS_REGION }}
  
      - name: Setup Terraform with specified version on the runner
        uses: hashicorp/setup-terraform@v2
