@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "tf-tuts-state"
+    bucket = "tf-backend-state-xiaoxuan"
     key    = "state"
     region = "eu-north-1"
   }
