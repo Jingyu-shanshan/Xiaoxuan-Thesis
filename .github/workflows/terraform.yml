@@ -16,6 +16,7 @@ jobs:
  terraform:
    name: "Terraform Infrastructure Change Management"
    runs-on: ubuntu-latest
+   environment: AWS-CREDENTIALS
    permissions:
       id-token: write
       contents: read
@@ -31,7 +32,7 @@ jobs:
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
-         role-to-assume: arn:aws:iam::380893840295:role/github-actions-pipeline
+         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
          role-session-name: GithubActionDeployment
          aws-region: ${{ env.TF_VAR_AWS_REGION }}
  
