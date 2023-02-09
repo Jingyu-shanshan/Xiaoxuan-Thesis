@@ -1,6 +1,12 @@
 name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions"
  
 on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: Confirm?
+        required: true
+        default: no
  push:
    branches:
    - main
@@ -90,5 +96,5 @@ jobs:
        run: exit 1
  
      - name: Terraform Apply
-       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+       if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event.inputs.confirm == 'yes'
        run: terraform apply -auto-approve -input=false
