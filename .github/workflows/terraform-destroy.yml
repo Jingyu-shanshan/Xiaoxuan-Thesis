@@ -1,4 +1,4 @@
-name: "Terraform Infrastructure Change Management Pipeline with GitHub Actions"
+name: "[Terraform][Destroy] infrastrucure from AWS"
  
 on:
  workflow_dispatch:
@@ -61,7 +61,7 @@ jobs:
      - name: Terraform plan
        id: plan
        if: github.event_name == 'pull_request'
-       run: terraform plan -no-color -input=false
+       run: terraform plan -no-color -input=false -destroy
        continue-on-error: true
     
      - uses: actions/github-script@v6
@@ -97,4 +97,4 @@ jobs:
  
      - name: Terraform Apply
        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && github.event.inputs.confirm == 'yes'
-       run: terraform apply -auto-approve -input=false
+       run: terraform apply -destroy -auto-approve -input=false
