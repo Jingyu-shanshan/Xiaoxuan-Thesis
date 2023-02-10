@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/Jingyu-shanshan/Xiaoxuan-Thesis/Core/apis"
 	"github.com/Jingyu-shanshan/Xiaoxuan-Thesis/Core/infras"
 	"github.com/gofiber/fiber/v2"
 )
@@ -10,7 +11,7 @@ func main() {
 
 	app := fiber.New()
 
-	infras.SetupRoutes(app)
+	apis.HomeRoute(app)
 
 	app.Listen(":8082")
 }
