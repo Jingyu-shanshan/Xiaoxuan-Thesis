@@ -1,35 +1,18 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-
-	_ "github.com/gofiber/fiber/v2"
-	_ "github.com/lib/pq"
+	"github.com/Jingyu-shanshan/Xiaoxuan-Thesis/Core/infras"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	var host, user, password, database string = "db", os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_NAME")
+	infras.ConnectDb()
 
-	db, err := sql.Open(
-		"postgres",
-		fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", host, user, password, database),
-	)
-	if err != nil {
-		panic(err)
-	}
+	app := fiber.New()
 
-	if err = db.Ping(); err != nil {
-		panic(err)
-	}
-	fmt.Println("Successfully created connection to database")
-
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello Xiaoxuan!")
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, Xiaoxuan! DB is ready")
 	})
 
-	log.Fatal(http.ListenAndServe(":8082", nil))
+	app.Listen(":8082")
 }
