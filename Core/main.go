@@ -12,6 +12,7 @@ func main() {
 	app := fiber.New()
 
 	apis.HomeRoute(app)
+	apis.UserRoute(app)
 
 	app.Listen(":8082")
 }
