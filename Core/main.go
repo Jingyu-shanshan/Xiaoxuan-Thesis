@@ -10,7 +10,7 @@ func main() {
 
 	app := fiber.New()
 
-	infras.setupRoutes(app)
+	infras.SetupRoutes(app)
 
 	app.Listen(":8082")
 }
