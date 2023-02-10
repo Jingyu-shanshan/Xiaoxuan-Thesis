@@ -10,9 +10,7 @@ func main() {
 
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, Xiaoxuan! DB is ready")
-	})
+	infras.setupRoutes(app)
 
 	app.Listen(":8082")
 }
