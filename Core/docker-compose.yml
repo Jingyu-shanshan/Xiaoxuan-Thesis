@@ -9,7 +9,7 @@ services:
       - .:/usr/src/app
     depends_on:
       - db
-    command: go run main.go -b 0.0.0.0
+    command: air ./main.go -b 0.0.0.0
     restart: always
   db:
     image: postgres:12.4-alpine
