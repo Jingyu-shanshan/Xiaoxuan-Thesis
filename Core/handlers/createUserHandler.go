@@ -18,3 +18,10 @@ func CreateUser(c *fiber.Ctx) error {
 
 	return c.Status(200).JSON(user)
 }
+
+func ListUsers(c *fiber.Ctx) error {
+	users := []models.User{}
+	infras.DB.Db.Find(&users)
+
+	return c.Status(200).JSON(users)
+}

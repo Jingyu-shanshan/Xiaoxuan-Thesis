@@ -6,5 +6,7 @@ import (
 )
 
 func UserRoute(app *fiber.App) {
-	app.Post("/user", handlers.Home)
+	app.Post("/user", handlers.CreateUser)
+
+	app.Get("/users", handlers.ListUsers)
 }
